@@ -61,9 +61,10 @@ def simulation ():
                         if animal.age > SHEEP_MAX_AGE: 
                             grille [x,y][1] = None 
                         else : 
-                            animal.move(grille)
-                            animal.reproduction(grille)
-                            animal.untreated = False 
+                            if animal.untreated : 
+                                animal.move(grille)
+                                animal.reproduction(grille)
+                                animal.untreated = False 
                         
                         
                     # getsion des loups 
@@ -72,10 +73,12 @@ def simulation ():
                         if animal.age > WOLF_MAX_AGE: 
                             grille [x,y][1] = None 
                         else : 
-                            animal.move(grille)
-                            animal.reproduction_wolf(grille)
-                            animal.untreated = False 
-        # gestiond de l'arrêt 
+                            if animal.untreated : 
+
+                                animal.move(grille)
+                                animal.reproduction_wolf(grille)
+                                animal.untreated = False 
+            # gestiond de l'arrêt 
         if animal_alive ==0 : 
             fini = True 
         time+=1
