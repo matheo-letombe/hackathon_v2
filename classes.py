@@ -9,9 +9,10 @@ class Grass: #On définit la classe de l'herbe avec tous les paramètres demand�
 
 
 class Animal: #On définit une classe mère Animal et tous les paramètres et foncitons communs à tous les animaux (déplacement, age, énergie, position)
-    position:tuple
-    age:int
-    energy:int
+    def __init__(self, position:tuple, age:int, energy:int):
+        self.position = position
+        self.age = age
+        self.energy = energy
 
     def move_right_possible(self) -> bool: #On crée une fonction pour savoir si bouger à droite est possible
         return self.position[0] < GRID_SIZE #Possibilité de rajouter des lignes de code pour modéliser des obstacles
@@ -117,7 +118,7 @@ class Sheep(Animal): #On définit la sous-classe mouton et les fonctions propres
             
     
     def reproduction(self, map) -> None: #On définit la fonction reproduction
-        if self.energy > SHEEP_REPRODUCTION_THRESHOLD and self.create_sheep(map):
+        if self.energy >= SHEEP_REPRODUCTION_THRESHOLD and self.create_sheep(map):
             self.energy -= REPRODUCTION_ENERGY_COST #On enlève l'énergie qui a servi à se reproduire
 
 class Wolf(Animal):
@@ -148,23 +149,25 @@ class Wolf(Animal):
     
     def create_wolf(self, map) -> None: #On définit la fonction pour créer un loup sur une case adjacente que l'on appellera dans la fonction reproduction
         case = self.position
-        sheep = Sheep(case, 0, SHEEP_INITIAL_ENERGY)
+        wolf = Wolf(case, 0, SHEEP_INITIAL_ENERGY)
         if case[1] > 0 and map[case[1]-1][case[0]][1] == None: #On regarde toutes les possibilités, par défaut on le fait dans cet ordre, possibilité de rendre le procédé aléatoire
-            sheep.position[1] -= 1
-            map[case[1]-1][case[0]][1] = sheep
+            wolf.position[1] -= 1
+            map[case[1]-1][case[0]][1] = wolf
             return True
         if case[1] < GRID_SIZE and map[self.position[1]+1][self.position[0]] == None:
-            sheep.position[1] += 1
-            map[case[1]+1][case[0]] = sheep
+            wolf.position[1] += 1
+            map[case[1]+1][case[0]] = wolf
             return True
         if case[0] > 0 and map[self.position[1]][self.position[0]-1] == None:
-            sheep.position[0] -= 1
-            map[case[1]][case[0]-1] = sheep
+            wolf.position[0] -= 1
+            map[case[1]][case[0]-1] = wolf
             return True
         if case[0] < GRID_SIZE and map[case[1]][case[0]+1][1] == None:
-            sheep.position[0] += 1
-            map[case[1]][case[0]+1][1] = sheep
+            wolf.position[0] += 1
+            map[case[1]][case[0]+1][1] = wolf
             return True
         else:
-            print("Le mouton ne peut pas se reproduire !")
+            print("Le loup ne peut pas se reproduire !")
             return False
+        
+    
