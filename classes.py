@@ -20,7 +20,7 @@ class Animal: #On définit une classe mère Animal et tous les paramètres et fo
         self.energy = energy
 
     def move_right_possible(self) -> bool: #On crée une fonction pour savoir si bouger à droite est possible
-        return self.position[0] < GRID_SIZE #Possibilité de rajouter des lignes de code pour modéliser des obstacles
+        return self.position[0] < GRID_SIZE - 1 #Possibilité de rajouter des lignes de code pour modéliser des obstacles
     
     def move_right(self, map):
         if self.move_right_possible():
@@ -56,7 +56,7 @@ class Animal: #On définit une classe mère Animal et tous les paramètres et fo
     
     
     def move_down_possible(self):
-        return self.position[1] < GRID_SIZE
+        return self.position[1] < GRID_SIZE - 1
     
     def move_down(self, map):
         if self.move_down_possible():
@@ -108,7 +108,7 @@ class Sheep(Animal): #On définit la sous-classe mouton et les fonctions propres
             sheep.position[1] -= 1
             map[case[1]-1][case[0]][1] = sheep
             return True
-        if case[1] < GRID_SIZE and map[self.position[1]+1][self.position[0]] == None:
+        if case[1] < GRID_SIZE - 1 and map[self.position[1]+1][self.position[0]] == None:
             sheep.position[1] += 1
             map[case[1]+1][case[0]] = sheep
             return True
@@ -116,7 +116,7 @@ class Sheep(Animal): #On définit la sous-classe mouton et les fonctions propres
             sheep.position[0] -= 1
             map[case[1]][case[0]-1] = sheep
             return True
-        if case[0] < GRID_SIZE and map[case[1]][case[0]+1][1] == None:
+        if case[0] < GRID_SIZE - 1 and map[case[1]][case[0]+1][1] == None:
             sheep.position[0] += 1
             map[case[1]][case[0]+1][1] = sheep
             return True
@@ -149,7 +149,7 @@ class Wolf(Animal):
             self.energy += WOLF_ENERGY_FROM_SHEEP
         else:
             L = [self.move_down(map), self.move_up(map), self.move_left(map), self.move_right(map)]
-            for i in range(4,0,-1): 
+            for i in range(3,-1,-1): 
                 r = rd.randint(0,i) #On choisit de manière aléatoire un mvt
                 if L[r] != False: #Si le mouvement est possible, on bouge
                     break
@@ -165,7 +165,7 @@ class Wolf(Animal):
             wolf.position[1] -= 1
             map[case[1]-1][case[0]][1] = wolf
             return True
-        if case[1] < GRID_SIZE and map[self.position[1]+1][self.position[0]] == None:
+        if case[1] < GRID_SIZE - 1 and map[self.position[1]+1][self.position[0]] == None:
             wolf.position[1] += 1
             map[case[1]+1][case[0]] = wolf
             return True
@@ -173,7 +173,7 @@ class Wolf(Animal):
             wolf.position[0] -= 1
             map[case[1]][case[0]-1] = wolf
             return True
-        if case[0] < GRID_SIZE and map[case[1]][case[0]+1][1] == None:
+        if case[0] < GRID_SIZE - 1 and map[case[1]][case[0]+1][1] == None:
             wolf.position[0] += 1
             map[case[1]][case[0]+1][1] = wolf
             return True
