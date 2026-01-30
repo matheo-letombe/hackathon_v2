@@ -6,11 +6,15 @@ import numpy as np
 
 def simulation ():
 
+    fini = False 
     time = 0 
+    
     # on crée la grille
     grille = create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
 
-    while time <=  MAX_TURNS : 
+    while time <=  MAX_TURNS and not fini : 
+
+        animal_alive = 0 
 
         for x in range(GRID_SIZE):
             for y in range (GRID_SIZE):
@@ -19,6 +23,14 @@ def simulation ():
                 if grille[x,y][1] is not None :
                     animal = grille [x,y][1]
                     animal.age+=1
+
+                    animal_alive+=1
+                    
+
+                    #vérification des morts : 
+
+                    if animal.energy <= 0 : 
+                        animal == None 
                 
                 # On check l'état de l'herbe
                 herbe = grille[x,y][0]
@@ -37,6 +49,52 @@ def simulation ():
                 else : 
                     if np.random.random()<=GRASS_GROWTH_PROBABILITY :
                         grille[y,x][0]= Grass(True, False, 0) 
+                
+                # gestion  des montons 
+                if type(animal)== Sheep : 
+                    if animal.age > SHEEP_MAX_AGE: 
+                        animal = None 
+                    else : 
+                        animal.move()
+                        animal.reproduction()
+                    
+                    
+                # getsion des loups 
+
+                if type(animal)== Wolf : 
+                    if animal.age > WOLF_MAX_AGE: 
+                        animal = None 
+                    else : 
+                        animal.move()
+                        animal.reproduction()
+                
+                # gestiond de l'arrêt 
+                if animal_alive ==0 : 
+                    fini = True 
+
+
+
+
+
+
+
+                
+
+                
+
+                
+                    
+                
+                
+
+
+                
+
+
+
+
+
+                
 
                 
 
