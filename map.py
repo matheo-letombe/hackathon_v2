@@ -26,12 +26,12 @@ def create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE
                 map[i][j][0] = Grass(False, False, 0)
 
             if r_sheep < INITIAL_SHEEP / (GRID_SIZE * GRID_SIZE):
-                map[i][j][1] =  Sheep((j,i), 0, SHEEP_INITIAL_ENERGY)
+                map[i][j][1] =  Sheep((j,i), 0, SHEEP_INITIAL_ENERGY, True)
             # il n'y a pas de mouton à cet endroit
 
 
             elif r_wolf < INITIAL_WOLVES / (GRID_SIZE * GRID_SIZE):
-                map[i][j][1] = Wolf((j,i), 0, WOLF_INITIAL_ENERGY)
+                map[i][j][1] = Wolf((j,i), 0, WOLF_INITIAL_ENERGY, True)
             
             else : 
                 map[i][j][1] = None

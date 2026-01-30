@@ -99,7 +99,7 @@ class Sheep(Animal): #On définit la sous-classe mouton et les fonctions propres
     
     def create_sheep(self, map) -> None: #On définit la fonction pour créer un mouton sur une case adjacente que l'on appellera dans la fonction reproduction
         case = self.position
-        sheep = Sheep(case, 0, SHEEP_INITIAL_ENERGY)
+        sheep = Sheep(case, 0, SHEEP_INITIAL_ENERGY, True)
         if case[1] > 0 and map[case[1]-1][case[0]][1] == None: #On regarde toutes les possibilités, par défaut on le fait dans cet ordre, possibilité de rendre le procédé aléatoire
             sheep.position[1] -= 1
             map[case[1]-1][case[0]][1] = sheep
@@ -156,7 +156,7 @@ class Wolf(Animal):
     
     def create_wolf(self, map) -> None: #On définit la fonction pour créer un loup sur une case adjacente que l'on appellera dans la fonction reproduction
         case = self.position
-        wolf = Wolf(case, 0, WOLF_INITIAL_ENERGY)
+        wolf = Wolf(case, 0, WOLF_INITIAL_ENERGY, True)
         if case[1] > 0 and map[case[1]-1][case[0]][1] == None: #On regarde toutes les possibilités, par défaut on le fait dans cet ordre, possibilité de rendre le procédé aléatoire
             wolf.position[1] -= 1
             map[case[1]-1][case[0]][1] = wolf
