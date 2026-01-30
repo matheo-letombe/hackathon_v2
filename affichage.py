@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 import numpy as np  
 # je veux que les cases avec de l'herbe soient en vert,
 # celles sans herbe en marron, les moutons en croix blanche et les loups en croix noir
-from classes.py import * 
-from map.py import * 
-from constantes.py import *
+from classes import * 
+from map import * 
+from constantes import *
 
 
 
