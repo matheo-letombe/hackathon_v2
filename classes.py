@@ -14,10 +14,11 @@ class Animal: #On définit une classe mère Animal et tous les paramètres et fo
         self.age = age
         self.energy = energy
 
-    def __init__(self, position: tuple, age: int, energy: int):
+    def __init__(self, position: tuple, age: int, energy: int, untreated: bool):
         self.position = list(position)  # Convert to list pour pouvoir modifier
         self.age = age
         self.energy = energy
+        self.untreated = untreated #On rajoute un booléen pour savoir si l'animal en quesiton a été traité ou non
 
     def move_right_possible(self) -> bool: #On crée une fonction pour savoir si bouger à droite est possible
         return self.position[0] < GRID_SIZE - 1 #Possibilité de rajouter des lignes de code pour modéliser des obstacles
@@ -56,7 +57,7 @@ class Animal: #On définit une classe mère Animal et tous les paramètres et fo
     
     
     def move_down_possible(self):
-        return self.position[1] < GRID_SIZE - 1
+        return abs(self.position[1]) < GRID_SIZE - 1
     
     def move_down(self, map):
         if self.move_down_possible():
