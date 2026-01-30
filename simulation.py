@@ -23,7 +23,9 @@ def simulation ():
                 
                 # On augmente l'age des animaux 
                 if grille[x,y][1] is not None :
+
                     animal = grille [x,y][1]
+                    animal.untreated = True 
                     animal.age+=1
 
                     animal_alive+=1
@@ -61,6 +63,7 @@ def simulation ():
                         else : 
                             animal.move(grille)
                             animal.reproduction(grille)
+                            animal.untreated = False 
                         
                         
                     # getsion des loups 
@@ -71,7 +74,8 @@ def simulation ():
                         else : 
                             animal.move(grille)
                             animal.reproduction_wolf(grille)
-                    # gestiond de l'arrêt 
+                            animal.untreated = False 
+        # gestiond de l'arrêt 
         if animal_alive ==0 : 
             fini = True 
         time+=1
