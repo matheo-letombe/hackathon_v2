@@ -1,6 +1,5 @@
-
 from constantes import *
-from classes import * 
+from classes import *
 from map import * 
 import numpy as np 
 import matplotlib.pyplot as plt 
@@ -14,9 +13,13 @@ def simulation ():
     # on crée la grille
     grille = create_map(GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
 
+    plt.ion()
+    fig, ax = plt.subplots()
+
     while time <=  MAX_TURNS and not fini : 
 
         animal_alive = 0 
+        ax.clear()
 
         for x in range(GRID_SIZE):
             for y in range (GRID_SIZE):
@@ -81,16 +84,18 @@ def simulation ():
             # gestiond de l'arrêt 
         if animal_alive ==0 : 
             fini = True 
+
+        display_map(grille)
+        plt.draw()
+        plt.pause(0.08)
+
         time+=1
         print(time)
-        #display_map(grille)
+    
+    plt.ioff()
+    plt.show()
 
 simulation()
-
-
-
-                
-
                 
 
                 
