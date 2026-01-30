@@ -1,6 +1,8 @@
 # création de la map 
 import numpy as np 
 import random as rd 
+from classes import Grass, Sheep, Wolf
+
 
 
 def create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE):
@@ -9,7 +11,7 @@ def create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE
     for i in range(GRID_SIZE):
         for j in range(GRID_SIZE): 
             # l'emplacement 0 de la liste correspond à l'herbe, le 1 au mouton ou au loup
-            map[i][j] = [None, None]
+            map[i][j] = [Grass(False, False, 0), None]
 
             # on définit une probabilité pour chaque case d'avoir de l'herbe, un mouton ou un loup
             r_grass = rd.random() 
@@ -23,13 +25,18 @@ def create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE
                 map[i][j][0] = Grass(False, False, 0)
 
             if r_sheep < INITIAL_SHEEP / (GRID_SIZE * GRID_SIZE):
-                map[i][j][1] =  Sheep(position:(i,j), age:0, energy: SHEEP_INITIAL_ENERGY)
+                map[i][j][1] =  Sheep((i,j), 0, SHEEP_INITIAL_ENERGY)
             # il n'y a pas de mouton à cet endroit
             else : 
                 map[i][j][1] = None 
 
             if r_wolf < INITIAL_WOLVES / (GRID_SIZE * GRID_SIZE):
-                map[i][j][1] = Wolf(position:(i,j), age:0, energy: WOLF_INITIAL_ENERGY)
+                map[i][j][1] = Wolf((i,j), 0, WOLF_INITIAL_ENERGY)
             # il n'y a pas de loup à cet endroit
             else : 
                 map[i][j][1] = None
+
+    return map
+
+
+map = create_map(20, 50, 20, 0.5)
