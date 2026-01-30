@@ -86,7 +86,7 @@ class Sheep(Animal): #On définit la sous-classe mouton et les fonctions propres
             self.eat_grass(map)
         else:
             L = [self.move_down(map), self.move_up(map), self.move_left(map), self.move_right(map)]
-            for i in range(4,0,-1): 
+            for i in range(3,-1,-1): 
                 r = rd.randint(0,i) #On choisit de manière aléatoire un mvt
                 if L[r] != False: #Si le mouvement est possible, on bouge
                     break
@@ -160,7 +160,7 @@ class Wolf(Animal):
     
     def create_wolf(self, map) -> None: #On définit la fonction pour créer un loup sur une case adjacente que l'on appellera dans la fonction reproduction
         case = self.position
-        wolf = Wolf(case, 0, SHEEP_INITIAL_ENERGY)
+        wolf = Wolf(case, 0, WOLF_INITIAL_ENERGY)
         if case[1] > 0 and map[case[1]-1][case[0]][1] == None: #On regarde toutes les possibilités, par défaut on le fait dans cet ordre, possibilité de rendre le procédé aléatoire
             wolf.position[1] -= 1
             map[case[1]-1][case[0]][1] = wolf
@@ -181,4 +181,7 @@ class Wolf(Animal):
             print("Le loup ne peut pas se reproduire !")
             return False
         
-    
+    def reproduction_wolf(self, map):
+        if self.energy >= WOLF_REPRODUCTION_THRESHOLD and self.create_wolf(map):
+            self.energy -= WOLF_ENERGY_FROM_SHEEP
+

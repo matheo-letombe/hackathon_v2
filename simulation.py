@@ -3,6 +3,7 @@ from constantes import *
 from classes import * 
 from map import * 
 import numpy as np 
+import matplotlib.pyplot as plt 
 
 def simulation ():
 
@@ -30,7 +31,7 @@ def simulation ():
                     #vérification des morts : 
 
                     if animal.energy <= 0 : 
-                        animal = None 
+                        grille [x,y][1] = None 
                 
                 # On check l'état de l'herbe
                 herbe = grille[x,y][0]
@@ -50,27 +51,37 @@ def simulation ():
                     if np.random.random()<=GRASS_GROWTH_PROBABILITY :
                         grille[y,x][0]= Grass(True, False, 0) 
                 
-                # gestion  des montons 
-                if type(animal)== Sheep : 
-                    if animal.age > SHEEP_MAX_AGE: 
-                        animal = None 
-                    else : 
-                        animal.move(grille)
-                        animal.reproduction(grille)
-                    
-                    
-                # getsion des loups 
+                if grille[x,y][1] is not None :
+                    animal = grille [x,y][1]
+                    # gestion  des montons 
+                    if type(animal)== Sheep : 
+                        if animal.age > SHEEP_MAX_AGE: 
+                            grille [x,y][1] = None 
+                        else : 
+                            animal.move(grille)
+                            animal.reproduction(grille)
+                        
+                        
+                    # getsion des loups 
 
-                if type(animal)== Wolf : 
-                    if animal.age > WOLF_MAX_AGE: 
-                        animal = None 
-                    else : 
-                        animal.move(grille)
-                        animal.reproduction(grille)
+                    if type(animal)== Wolf : 
+                        if animal.age > WOLF_MAX_AGE: 
+                            grille [x,y][1] = None 
+                        else : 
+                            animal.move(grille)
+                            animal.reproduction_wolf(grille)
+                    
+                print(time)
+            
                 
                 # gestiond de l'arrêt 
                 if animal_alive ==0 : 
                     fini = True 
+    
+    time+=1
+
+simulation()
+                
 
 
 
