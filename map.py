@@ -39,5 +39,3 @@ def create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE
 
     return map
 
-
-map = create_map(20, 50, 20, 0.5)
