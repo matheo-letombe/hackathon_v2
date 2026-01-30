@@ -50,7 +50,7 @@ def simulation ():
                 # Il n'y a pas d'herbe, on en crée aléatoirement 
                 else : 
                     if np.random.random()<=GRASS_GROWTH_PROBABILITY :
-                        grille[y,x][0]= Grass(True, False, 0) 
+                        grille[x,y][0]= Grass(True, False, 0) 
                 
                 if grille[x,y][1] is not None :
                     animal = grille [x,y][1]
