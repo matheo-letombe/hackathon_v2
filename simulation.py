@@ -4,6 +4,7 @@ from classes import *
 from map import * 
 import numpy as np 
 import matplotlib.pyplot as plt 
+from affichage import display_map
 
 def simulation ():
 
@@ -70,15 +71,12 @@ def simulation ():
                         else : 
                             animal.move(grille)
                             animal.reproduction_wolf(grille)
-                    
-                print(time)
-            
-                
-                # gestiond de l'arrêt 
+                    # gestiond de l'arrêt 
                 if animal_alive ==0 : 
                     fini = True 
-    
-    time+=1
+        time+=1
+        print(time)
+        #display_map(grille)
 
 simulation()
                 
