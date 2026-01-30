@@ -63,8 +63,8 @@ class Animal: #On définit une classe mère Animal et tous les paramètres et fo
             return False
 
 class Sheep(Animal): #On définit la sous-classe mouton et les fonctions propres aux moutons
-    def __init__(self, position: tuple, age: int, energy: int):
-        super().__init__(position, age, energy)
+    def __init__(self, position: tuple, age: int, energy: int, untreated: bool):
+        super().__init__(position, age, energy, untreated)
     
     def move(self, map)->None:
         case = self.position
@@ -126,8 +126,8 @@ class Sheep(Animal): #On définit la sous-classe mouton et les fonctions propres
             self.energy -= REPRODUCTION_ENERGY_COST #On enlève l'énergie qui a servi à se reproduire
 
 class Wolf(Animal):
-    def __init__(self, position: tuple, age: int, energy: int):
-        super().__init__(position, age, energy)
+    def __init__(self, position: tuple, age: int, energy: int, untreated: bool):
+        super().__init__(position, age, energy, untreated)
     
     def move(self, map)->None:
         case = self.position
