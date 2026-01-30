@@ -1,5 +1,6 @@
 from map import map
 import random as rd
+from constantes import*
 class Grass:
     def __init__(self, state:bool, eaten:bool, time_growth:int):
         self.state = state 
@@ -18,6 +19,7 @@ class Animal:
     def move_right(self):
         if self.move_right_possible():
             self.position[0] += 1
+            self.energy += SHEEP_ENERGY_LOSS_PER_TURN
         else:
             return False
     
@@ -28,6 +30,7 @@ class Animal:
     def move_left(self):
         if self.move_left_possible():
             self.position[0] += -1
+            self.energy += SHEEP_ENERGY_LOSS_PER_TURN
         else:
             return False
 
@@ -38,6 +41,7 @@ class Animal:
     def move_up(self):
         if self.move_up_possible():
             self.position[1] += 1
+            self.energy += SHEEP_ENERGY_LOSS_PER_TURN
         else:
             return False
     
@@ -48,6 +52,7 @@ class Animal:
     def move_down(self):
         if self.move_down_possible():
             self.position[1] += -1
+            self.energy += SHEEP_ENERGY_LOSS_PER_TURN
         else: 
             return False
 
@@ -79,7 +84,9 @@ class Sheep(Animal):
         herbe = map[self.position[0]][self.position[1]][0]
         herbe.eaten = True
         herbe.time_growth = 0
-        self.energy += 20   
-               
+        self.energy += SHEEP_ENERGY_FROM_GRASS
+    
+    def reproduction(self) -> None:
+        
 class Wolf(Animal):
     pass
