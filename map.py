@@ -1,7 +1,7 @@
 # création de la map 
 import numpy as np 
 import random as rd 
-from classes import *
+from classes import Grass, Sheep, Wolf
 
 
 
