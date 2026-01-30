@@ -13,6 +13,11 @@ class Animal: #On définit une classe mère Animal et tous les paramètres et fo
     age:int
     energy:int
 
+    def __init__(self, position: tuple, age: int, energy: int):
+        self.position = list(position)  # Convert to list pour pouvoir modifier
+        self.age = age
+        self.energy = energy
+
     def move_right_possible(self) -> bool: #On crée une fonction pour savoir si bouger à droite est possible
         return self.position[0] < GRID_SIZE #Possibilité de rajouter des lignes de code pour modéliser des obstacles
     
@@ -61,6 +66,9 @@ class Animal: #On définit une classe mère Animal et tous les paramètres et fo
             return False
 
 class Sheep(Animal): #On définit la sous-classe mouton et les fonctions propres aux moutons
+    def __init__(self, position: tuple, age: int, energy: int):
+        super().__init__(position, age, energy)
+    
     def move(self, map)->None:
         case = self.position
         if self.move_down_possible() and map[case[1]+1][case[0]][0].state: #On regarde s'il est possible de bouger sur les cases adjacentes et si celles-ci ont de l'herbe
@@ -121,6 +129,9 @@ class Sheep(Animal): #On définit la sous-classe mouton et les fonctions propres
             self.energy -= REPRODUCTION_ENERGY_COST #On enlève l'énergie qui a servi à se reproduire
 
 class Wolf(Animal):
+    def __init__(self, position: tuple, age: int, energy: int):
+        super().__init__(position, age, energy)
+    
     def move(self, map)->None:
         case = self.position
         if self.move_down_possible() and map[case[1]+1][case[0]][1] != None : #On regarde s'il est possible de bouger sur les cases adjacentes et si un mouton est situé sur celles-ci
