@@ -8,31 +8,28 @@ def create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE
     # Initialiser la couverture d'herbe
     for i in range(GRID_SIZE):
         for j in range(GRID_SIZE): 
+            # l'emplacement 0 de la liste correspond à l'herbe, le 1 au mouton ou au loup
+            map[i][j] = [None, None]
+
+            # on définit une probabilité pour chaque case d'avoir de l'herbe, un mouton ou un loup
             r_grass = rd.random() 
             r_sheep = rd.random()
             r_wolf = rd.random()
+
+            # on initialise l'herbe, les moutons et les loups en fonction des probabilités
             if r_grass < INITIAL_GRASS_COVERAGE:
-                map[i][j] = (Grass(), Animal())
+                map[i][j][0] = Grass(True, False,0 )
             else : 
-                map[i][j] = (Grass(), Animal())
-                
-                
+                map[i][j][0] = Grass(False, False, 0)
+
             if r_sheep < INITIAL_SHEEP / (GRID_SIZE * GRID_SIZE):
-                map[i][j] = (Grass(), Sheep())
+                map[i][j][1] =  Sheep(position:(i,j), age:0, energy: SHEEP_INITIAL_ENERGY)
+            # il n'y a pas de mouton à cet endroit
             else : 
-                map[i][j] = (Grass(), Animal())
-            
-            
+                map[i][j][1] = None 
+
             if r_wolf < INITIAL_WOLVES / (GRID_SIZE * GRID_SIZE):
-                map[i][j] = (Grass(), Wolf())
+                map[i][j][1] = Wolf(position:(i,j), age:0, energy: WOLF_INITIAL_ENERGY)
+            # il n'y a pas de loup à cet endroit
             else : 
-                map[i][j] = (Grass(), Animal())
-        
-            
-
-state int 
-eaten bool au bout de 7 tours 
-time_growth int 
-dfv dxf
-position age energy 
-
+                map[i][j][1] = None
