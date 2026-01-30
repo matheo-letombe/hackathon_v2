@@ -61,9 +61,13 @@ class Sheep(Animal):
             self.move_left()
         else:
             L = [self.move_down(), self.move_up(), self.move_left(), self.move_right()]
-            r = rd.randint(0,4)
-            if L[r] != False:
-                L[r]
+            for i in range(4,0,-1):
+                r = rd.randint(0,i)
+                if L[r] != False:
+                    L[r]
+                    break
+                else:
+                    L.remove(L[r])
             
                 
                
