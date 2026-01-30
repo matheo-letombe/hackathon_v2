@@ -40,3 +40,5 @@ def display_map(map):
 
 
 map = create_map(GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
+
+display_map(map)
