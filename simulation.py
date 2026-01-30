@@ -72,8 +72,8 @@ def simulation ():
                             animal.move(grille)
                             animal.reproduction_wolf(grille)
                     # gestiond de l'arrêt 
-                if animal_alive ==0 : 
-                    fini = True 
+        if animal_alive ==0 : 
+            fini = True 
         time+=1
         print(time)
         #display_map(grille)
