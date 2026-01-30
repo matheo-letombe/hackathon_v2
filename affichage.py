@@ -35,11 +35,3 @@ def display_map(map):
     plt.show()
 
 print ("teste ")
-
-
-
-
-
-#map = create_map(GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
-
-#display_map(map)
