@@ -80,7 +80,7 @@ def simulation ():
             fini = True 
         time+=1
         print(time)
-        display_map(grille)
+        #display_map(grille)
 
 simulation()
 
