@@ -12,7 +12,7 @@ def simulation ():
     time = 0 
     
     # on crée la grille
-    grille = create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
+    grille = create_map(GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
 
     while time <=  MAX_TURNS and not fini : 
 
@@ -76,7 +76,7 @@ def simulation ():
                     fini = True 
         time+=1
         print(time)
-        #display_map(grille)
+        display_map(grille)
 
 simulation()
                 

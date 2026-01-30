@@ -40,6 +40,6 @@ print ("teste ")
 
 
 
-map = create_map(GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
+#map = create_map(GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
 
-display_map(map)
+#display_map(map)
