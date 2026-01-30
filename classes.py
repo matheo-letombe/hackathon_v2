@@ -9,11 +9,6 @@ class Grass: #On définit la classe de l'herbe avec tous les paramètres demand�
 
 
 class Animal: #On définit une classe mère Animal et tous les paramètres et foncitons communs à tous les animaux (déplacement, age, énergie, position)
-    def __init__(self, position:tuple, age:int, energy:int):
-        self.position = position
-        self.age = age
-        self.energy = energy
-
     def __init__(self, position: tuple, age: int, energy: int, untreated: bool):
         self.position = list(position)  # Convert to list pour pouvoir modifier
         self.age = age
