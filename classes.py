@@ -86,7 +86,7 @@ class Sheep(Animal):
         herbe.time_growth = 0
         self.energy += SHEEP_ENERGY_FROM_GRASS
     
-    def reproduction(self) -> None:
+def reproduction(self) -> None:
         
 class Wolf(Animal):
     pass
