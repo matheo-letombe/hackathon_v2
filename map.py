@@ -33,6 +33,6 @@ def create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE
 state int 
 eaten bool au bout de 7 tours 
 time_growth int 
-
+dfv dxf
 position age energy 
 
