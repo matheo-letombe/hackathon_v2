@@ -59,16 +59,16 @@ class Animal:
 
 class Sheep(Animal):
     def move(self)->None:
-        if self.move_down_possible() and map[self.position[0]][self.position[1]+1][0].state :
+        if self.move_down_possible() and map[self.position[1]+1][self.position[0]][0].state :
             self.move_down()
             self.eat_grass()
-        if self.move_up_possible() and map[self.position[0]][self.position[1]-1][0].state:
+        if self.move_up_possible() and map[self.position[1]-1][self.position[0]][0].state:
             self.move_up()
             self.eat_grass()
-        if self.move_right_possible() and map[self.position[0]+1][self.position[1]][0].state:
+        if self.move_right_possible() and map[self.position[1]][self.position[0]+1][0].state:
             self.move_right()
             self.eat_grass()
-        if self.move_left_possible() and map[self.position[0]-1][self.position[1]][0].state:
+        if self.move_left_possible() and map[self.position[1]][self.position[0]-1][0].state:
             self.move_left()
             self.eat_grass()
         else:
@@ -76,13 +76,12 @@ class Sheep(Animal):
             for i in range(4,0,-1):
                 r = rd.randint(0,i)
                 if L[r] != False:
-                    L[r]
                     break
                 else:
                     L.remove(L[r])
             
     def eat_grass(self) -> None:
-        herbe = map[self.position[0]][self.position[1]][0]
+        herbe = map[self.position[1]][self.position[0]][0]
         herbe.eaten = True
         herbe.time_growth = 0
         self.energy += SHEEP_ENERGY_FROM_GRASS
@@ -90,21 +89,21 @@ class Sheep(Animal):
     def create_sheep(self) -> None:
         case = self.position
         sheep = Sheep(case, 0, SHEEP_INITIAL_ENERGY)
-        if case[1] > 0 and map[self.position[0]][self.position[1]-1][1] == None:
+        if case[1] > 0 and map[case[1]-1][case[0]][1] == None:
             sheep.position[1] -= 1
-            map[self.position[0]][self.position[1]-1][1] = sheep
+            map[case[1]-1][case[0]][1] = sheep
             return True
-        if case[1] < map.length and map[self.position[0]][self.position[1]+1] == None:
+        if case[1] < map.length and map[self.position[1]+1][self.position[0]] == None:
             sheep.position[1] += 1
-            map[self.position[0]][self.position[1]+1] = sheep
+            map[case[1]+1][case[0]] = sheep
             return True
-        if case[0] > 0 and map[self.position[0]-1][self.position[1]] == None:
+        if case[0] > 0 and map[self.position[1]][self.position[0]-1] == None:
             sheep.position[0] -= 1
-            map[self.position[0]-1][self.position[1]] = sheep
+            map[case[1]][case[0]-1] = sheep
             return True
-        if case[0] < map.length and map[case[0]+1][case[1]][1] == None:
+        if case[0] < map.length and map[case[1]][case[0]+1][1] == None:
             sheep.position[0] += 1
-            map[case[0]+1][case[1]][1] = sheep
+            map[case[1]][case[0]+1][1] = sheep
             return True
         else:
             print("Le mouton ne peut pas se reproduire !")
