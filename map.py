@@ -28,12 +28,11 @@ def create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE
             if r_sheep < INITIAL_SHEEP / (GRID_SIZE * GRID_SIZE):
                 map[i][j][1] =  Sheep((i,j), 0, SHEEP_INITIAL_ENERGY)
             # il n'y a pas de mouton à cet endroit
-            else : 
-                map[i][j][1] = None 
 
-            if r_wolf < INITIAL_WOLVES / (GRID_SIZE * GRID_SIZE):
+
+            elif r_wolf < INITIAL_WOLVES / (GRID_SIZE * GRID_SIZE):
                 map[i][j][1] = Wolf((i,j), 0, WOLF_INITIAL_ENERGY)
-            # il n'y a pas de loup à cet endroit
+            
             else : 
                 map[i][j][1] = None
 

@@ -26,7 +26,7 @@ def display_map(map):
 
             # Ajouter les animaux
             if isinstance(animal, Sheep):
-                plt.scatter(j, i, color='white', marker='x')  # Mouton en croix blanche
+                plt.scatter(j, i, color='white', marker='o')  # Mouton en croix blanche
             elif isinstance(animal, Wolf):
                 plt.scatter(j, i, color='black', marker='x')  # Loup en croix noire
 
@@ -34,6 +34,7 @@ def display_map(map):
     plt.axis('off')
     plt.show()
 
+print ("teste ")
 
 
 

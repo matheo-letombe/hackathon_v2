@@ -30,7 +30,7 @@ def simulation ():
                     #vérification des morts : 
 
                     if animal.energy <= 0 : 
-                        animal == None 
+                        animal = None 
                 
                 # On check l'état de l'herbe
                 herbe = grille[x,y][0]
