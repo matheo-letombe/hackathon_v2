@@ -12,7 +12,7 @@ def simulation ():
     time = 0 
     
     # on crée la grille
-    grille = create_map( GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
+    grille = create_map(GRID_SIZE, INITIAL_SHEEP, INITIAL_WOLVES, INITIAL_GRASS_COVERAGE)
 
     while time <=  MAX_TURNS and not fini : 
 
@@ -50,7 +50,7 @@ def simulation ():
                 # Il n'y a pas d'herbe, on en crée aléatoirement 
                 else : 
                     if np.random.random()<=GRASS_GROWTH_PROBABILITY :
-                        grille[y,x][0]= Grass(True, False, 0) 
+                        grille[x,y][0]= Grass(True, False, 0) 
                 
                 if grille[x,y][1] is not None :
                     animal = grille [x,y][1]
@@ -76,7 +76,7 @@ def simulation ():
             fini = True 
         time+=1
         print(time)
-        #display_map(grille)
+        display_map(grille)
 
 simulation()
 
